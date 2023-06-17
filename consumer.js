@@ -11,8 +11,6 @@ consumer.subscribe({ topic: 'product'});
 
 consumer.run({
     eachMessage: async ({ message }) => {
-        console.log({
-            value: message.value.toString(),
-        });
+        console.log("New message: "+message.value.toString());
     }
 });
