@@ -42,15 +42,13 @@ async function produceMessage(product) {
     }
 }
 
-let lastDocumentId;
 getLastDocument().then(async (lastDocument) => {
     if (!lastDocument) {
         const product = new productSchema({
             value: 0
         });
     }
-    lastDocumentId = lastDocument._id;
-    await produceMessage(lastDocument);
+    let lastDocumentId = lastDocument._id;
     while (true) {
         const newDocuments = await productSchema.find({_id: {$gt: lastDocumentId}});
         if (newDocuments.length > 0) {
