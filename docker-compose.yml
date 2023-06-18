@@ -36,7 +36,21 @@ services:
     networks:
       - app-network
 
-  consumer:
+  consumer-1:
+    build: ./Consumer
+    depends_on:
+      - kafka
+    restart: always
+    networks:
+      - app-network
+  consumer-2:
+    build: ./Consumer
+    depends_on:
+      - kafka
+    restart: always
+    networks:
+      - app-network
+  consumer-3:
     build: ./Consumer
     depends_on:
       - kafka
