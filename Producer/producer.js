@@ -14,7 +14,7 @@ try {
 
 const kafka = new Kafka.Kafka ({
     clientId: 'my-app',
-    brokers: ['kafka:29092']
+    brokers: ['kafka:9092']
 });
 
 const producer = kafka.producer();
