@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Kafka = require('kafkajs');
-const productSchema = require('./Schema/product');
+const productSchema = require('./Schema/Product');
 dotenv.config();
 
 try {
@@ -14,7 +14,7 @@ try {
 
 const kafka = new Kafka.Kafka ({
     clientId: 'my-app',
-    brokers: ['localhost:29092']
+    brokers: ['kafka:29092']
 });
 
 const producer = kafka.producer();
@@ -47,6 +47,8 @@ getLastDocument().then(async (lastDocument) => {
         const product = new productSchema({
             value: 0
         });
+        await product.save();
+        lastDocument = product;
     }
     let lastDocumentId = lastDocument._id;
     while (true) {
